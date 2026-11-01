@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinh Pham Minh Hai - Resume</title>
+    <style>
+        /* =========================================
+           CSS RESET & VARIABLES
+           ========================================= */
+        :root {
+            --primary-blue: #004d80; 
+            --text-dark: #222;
+            --text-gray: #444;
+            --bg-color: #f4f4f9;
+            --border-line: 2px solid var(--text-dark);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           TOP BAR & LED ANIMATION 
+           ========================================= */
+        @keyframes breathe-led {
+            0%, 100% { 
+                opacity: 1; 
+                box-shadow: 0 0 6px #c47b4e;
+            }
+            50% { 
+                opacity: 0.3; 
+                box-shadow: 0 0 0 transparent;
+            }
+        }
+
+        .top-bar-container {
+            background-color: #1a3322;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 96%; /* Để nó co giãn tốt trên màn hình nhỏ */
+            max-width: 900px; /* Chìa khóa đây: Rộng hơn tờ CV (900px) để thò ra hai bên */
+            padding: 10px 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left {
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px; 
+            height: 10px; 
+            background-color: #c47b4e; 
+            border-radius: 50%;
+            animation: breathe-led 1.5s infinite ease-in-out; 
+        }
+
+        .top-bar-text {
+            color: white; 
+            font-weight: 600; 
+            font-size: 15px;
+        }
+
+        .download-btn {
+            background-color: #de8044;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px; /* Thu nhỏ nút bấm lại một xíu để vừa vặn với thanh bar mỏng */
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        /* Khi rê chuột vào: Đầm màu lại, KHÔNG nhảy nhót */
+        .download-btn:hover {
+            background-color: #bf662f; /* Màu cam đất sậm hơn */
+        }
+
+        /* Khi nhấn chuột click: Nút lún nhẹ xuống tạo cảm giác vật lý */
+        .download-btn:active {
+            transform: scale(0.96); 
+        }
+        /* =========================================
+           RESUME A4 CONTAINER 
+           ========================================= */
+        .resume-wrapper {
+            background-color: #fff;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: var(--border-line);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .header-left {
+            flex: 2;
+            padding-right: 20px;
+        }
+
+        .header-left h1 {
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header-left h2 {
+            font-size: 14px;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .header-left p {
+            font-size: 13.5px;
+            text-align: left; 
+        }
+
+        .header-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        /* Contact Items & SVG Icons (Đã đổi sang màu tối) */
+        .contact-item {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item svg {
+            color: var(--text-dark); /* Đã đổi từ blue sang dark */
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Main Grid Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Section Headings */
+        h3.section-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--text-dark);
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+        
+        h3.section-title:first-child {
+            margin-top: 0;
+        }
+
+        /* Experience Items */
+        .job-item {
+            margin-bottom: 18px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .job-company {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+            font-size: 13.5px;
+            text-align: left; 
+        }
+
+        /* Skills Sidebar */
+        .skill-group {
+            background-color: #f8f9fa;
+            border-left: 3px solid var(--primary-blue);
+            padding: 8px 12px;
+            margin-bottom: 12px;
+        }
+
+        .skill-group h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .skill-group p {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .skill-group strong {
+            font-size: 13px;
+        }
+
+        /* Credentials Table-like structure */
+        .credential-row {
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        
+        .credential-label {
+            flex: 0 0 80px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .credential-value ul {
+            padding-left: 15px;
+            margin: 0;
+        }
+        
+        .credential-value p {
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #777;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+            .header-right {
+                margin-top: 15px;
+                border-top: 1px solid #eee;
+                padding-top: 15px;
+            }
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .resume-wrapper {
+                margin: 0;
+                padding: 20px;
+                box-shadow: none;
+            }
+        .top-bar-container {
+            background-color: #1a3322;
+            border-radius: 10px; /* Bóp nhẹ bo góc lại cho hợp với thanh mỏng */
+            margin: 20px auto;
+            max-width: 1020px; /* KÉO DÀI RA: Rộng hơn tờ A4 (900px) mỗi bên 60px */
+            padding: 10px 24px; /* ÉP MỎNG LẠI: Giảm khoảng trống trên/dưới từ 16px xuống 10px */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <div class="top-bar-container">
+        <div class="top-bar-left">
+            <div class="status-dot"></div>
+            <span class="top-bar-text">Editorial Resume Preview — Ready for Export / Print</span>
+        </div>
+        
+        <a href="https://drive.google.com/uc?export=download&id=1GuhHNMQIqN4n0m3c6387QAMNXlGP_zQl" target="_blank" class="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+              <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+            </svg>
+            Print / Save PDF
+        </a>
+    </div>
+
+    <!-- Resume Content -->
+    <div class="resume-wrapper">
+        <header>
+            <div class="header-left">
+                <h1>Trinh Pham Minh Hai</h1>
+                <h2>Packaging & Process Engineer | Pre-press Specialist</h2>
+                <p>Control Engineering & Automation graduate with hands-on expertise in precision packaging tooling, multi-brand golf surface masking (TaylorMade, Callaway, etc), and medical prepress compliance (GS1 Barcode / DataMatrix). Proven proficiency in SolidWorks (CSWP Certified) and Tecnomatix Plant Simulation for bottleneck resolution and throughput optimization.</p>
+            </div>
+            
+            <div class="header-right">
+                <!-- Icon Điện thoại -->
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                    </svg>
+                    <span>(+84) 372 612 484</span>
+                </div>
+                
+                <!-- Icon Email -->
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                    </svg>
+                    <span>hai.trinhpham0104@gmail.com</span>
+                </div>
+                
+                <!-- Icon Địa chỉ (Pin) -->
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>
+                    <span>Dong Nai, Viet Nam</span>
+                </div>
+                
+                <!-- Icon Link Web (Quả địa cầu) -->
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H11.84c.174.782.282 1.623.312 2.5h2.802zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                    </svg>
+                    <a href="https://haritrinh0104.my.canva.site/" target="_blank">haritrinh0104.my.canva.site/</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Column: Experience & Projects -->
+            <div class="left-column">
+                <h3 class="section-title">Professional Experience</h3>
+                
+                <!-- CACH ANH -->
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Packaging & Tooling Design Engineer</span>
+                        <span>02/2023 – Present</span>
+                    </div>
+                    <div class="job-company">CACH ANH CO., LTD | Full-time (Golf & Sports Equipment Packaging)</div>
+                    <ul>
+                        <li><strong>Die-Cut Masking & Surface Zoning:</strong> Engineered high-precision die-cut masking decals (±0.15 mm tolerance) protecting complex double-curved golf club head geometries during sandblasting, polishing, and multi-tone spray painting for global brands (TaylorMade, Callaway).</li>
+                        <li><strong>Pre-press & Flexo Production:</strong> Executed prepress color separation (Pantone spot matching, CMYK, halftone screening) in Illustrator/Photoshop; managed gang-run impositions and exported defect-free film outputs.</li>
+                        <li><strong>UV Printing & Distortion Control:</strong> Calculated exact 3D-to-2D shrinkage factors and center points for high-volume golf ball printing (e.g., TaylorMade TP5). Ensured zero graphic distortion on dimpled surfaces, alongside standard rotary printing for cylindrical tubes.</li>
+                        <li><strong>Process Engineering & Quality Control:</strong> Authored SOP, SIP, and PCP documentation for the printing department and successfully drove the implementation of 5S/3S workplace standards.</li>
+                        <li><strong>Tooling & CNC Operation:</strong> Generated AutoCAD profiles to directly program and operate CNC laser cutting and die-bending machines for precision die-board production.</li>
+                    </ul>
+                </div>
+
+                <!-- FREELANCE -->
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Technical Pre-press Specialist (Medical Packaging)</span>
+                        <span>2025 – Present</span>
+                    </div>
+                    <div class="job-company">FREELANCE CONTRACTOR | Healthcare & Medical Devices</div>
+                    <ul>
+                        <li><strong>GS1 Barcodes:</strong> Configured and audited GS1-128, GS1 DataMatrix, and 2D serialization codes using BarTender for international medical device clients (Medline, Amethyst, Texpol) adhering to FDA/MDR strict quiet zones.</li>
+                        <li><strong>Pre-press & Quality Assurance:</strong> Adjusted technical artwork and dielines for sterile surgical gown packaging (peel pouches, header bags), outputting precise negative films for printing vendors with 0% QC barcode verification rejection.</li>
+                    </ul>
+                </div>
+
+                <!-- SAILUN -->
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Process & Simulation Engineering Intern</span>
+                        <span>06/2022 – 08/2022</span>
+                    </div>
+                    <div class="job-company">SAILUN TIRE VIETNAM CO., LTD | Industrial Project</div>
+                    <ul>
+                        <li><strong>Factory Simulation Modeling:</strong> Built dynamic discrete-event simulation models of tire vulcanization and sorting lines using Siemens Tecnomatix Plant Simulation based on empirical time studies.</li>
+                        <li><strong>Bottleneck Identification & OEE:</strong> Pinpointed station cycle-time constraints, formulated line-balancing scenarios and AGV transit logic that doubled projected downstream throughput. Created engineering BOMs and optimization reports.</li>
+                    </ul>
+                </div>
+
+                <h3 class="section-title">Featured Engineering Design</h3>
+                
+                <!-- PROJECT -->
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Automated 3D Pick & Place Gantry System</span>
+                        <span>Academic Project</span>
+                    </div>
+                    <div class="job-company">Mechanical CAD Design & Assembly (SolidWorks 3D)</div>
+                    <ul>
+                        <li><strong>End-to-End System Modeling:</strong> Designed the complete machine structure, linear gantry axes, conveyor, and pneumatic pick-and-place mechanism from scratch in SolidWorks.</li>
+                        <li><strong>Production Drawings:</strong> Generated full BOM and manufacturing drawings directly from the SolidWorks 3D assembly.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: Skills & Education -->
+            <div class="right-column">
+                <h3 class="section-title">Technical Skills</h3>
+                
+                <div class="skill-group">
+                    <h4>CAD & MACHINE DESIGN</h4>
+                    <p><strong>SolidWorks 3D (CSWP)</strong><br>Part & Assembly Modeling, DFM, Motion Study, Drafting.</p>
+                    <p><strong>AutoCAD 2D</strong><br>Die-board layouts, CNC toolpaths, shop-floor layout drafting.</p>
+                </div>
+
+                <div class="skill-group">
+                    <h4>PACKAGING & PRE-PRESS</h4>
+                    <p><strong>Prepress Graphics</strong><br>Adobe Illustrator, Photoshop, InDesign (Pantone, CMYK, Halftone).</p>
+                    <p><strong>Barcode Standards</strong><br>BarTender: GS1-128, DataMatrix, 2D QR compliance.</p>
+                    <p><strong>Packaging Technology</strong><br>Die-cutting, self-adhesive decal labels, paper labels, surface masking zoning.</p>
+                </div>
+
+                <div class="skill-group">
+                    <h4>PROCESS & OPERATIONS</h4>
+                    <p><strong>Plant Simulation</strong><br>Tecnomatix Plant Simulation (Cycle times, Bottleneck, OEE).</p>
+                    <p><strong>Shop-floor & Machinery</strong><br>CNC Laser cutting, Die bending, UV printing, 5S, SOP/SIP.</p>
+                </div>
+
+                <h3 class="section-title">Education</h3>
+                <div style="margin-bottom: 20px;">
+                    <strong>Lac Hong University</strong><br>
+                    B.S. in Control Engineering & Automation<br>
+                    2019 – 2023 | <strong>GPA: 8.32 / 10</strong><br>
+                    <span style="color: #007bff; font-size: 13px;">Graduated with Honors</span>
+                </div>
+
+                <h3 class="section-title">Credentials</h3>
+                
+                <div class="credential-row">
+                    <div class="credential-label">CSWP</div>
+                    <div class="credential-value">
+                        <p>Certified SOLIDWORKS Professional (Mechanical Design)</p>
+                    </div>
+                </div>
+
+                <div class="credential-row">
+                    <div class="credential-label">Awards</div>
+                    <div class="credential-value">
+                        <ul>
+                            <li>2nd Prize: Automation Systems</li>
+                            <li>3rd Prize: 37th Faculty-level Scientific Research</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="credential-row">
+                    <div class="credential-label">Languages</div>
+                    <div class="credential-value">
+                        <ul>
+                            <li><strong>Vietnamese:</strong> Native</li>
+                            <li><strong>English:</strong> B2 Fluency</li>
+                            <li><strong>Chinese:</strong> Basic communication with supply chain/engineers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <span>Trinh Pham Minh Hai – Technical & Packaging Engineering Resume</span>
+            <span>Page 1 of 1</span>
+        </footer>
+    </div>
+
+</body>
+</html>
