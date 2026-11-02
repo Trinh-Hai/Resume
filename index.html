@@ -289,6 +289,40 @@
             display: flex;
             justify-content: space-between;
         }
+        .bottom-action {
+            display: flex;
+            justify-content: flex-end; /* Lệnh đẩy nút tịnh tiến về sát mép phải */
+            margin-top: 40px;
+            padding-bottom: 10px;
+            /* THÊM 2 DÒNG NÀY ĐỂ CANH THEO MÉP GIẤY */
+            max-width: 850px; /* Lưu ý: Bạn kéo lên xem class .resume-wrapper đang để max-width là bao nhiêu thì điền y chang số đó vào đây nhé (có thể là 800px, 850px hoặc 900px) */
+            margin: -20px auto 20px auto;
+        }
+
+        .bottom-back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: transparent;
+            color: #d1693b; /* Màu cam terracotta đồng bộ với nút tải PDF */
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #d1693b; /* Viền cam */
+            font-weight: bold;
+            font-size: 15px;
+            transition: all 0.2s ease, transform 0.1s ease;
+        }
+
+        .bottom-back-btn:hover {
+            background-color: #d1693b; /* Rê chuột vào sẽ đổ nền cam, chữ trắng */
+            color: #fff;
+        }
+
+        .bottom-back-btn:active {
+            transform: scale(0.96); /* Hiệu ứng lún nút cơ học */
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -326,6 +360,11 @@
                 flex-shrink: 0; /* Khóa cứng kích thước, tuyệt đối không cho bóp méo */
                 width: 16px;    /* Ép kích thước chuẩn */
                 height: 16px;   /* Ép kích thước chuẩn */
+            }
+            /* Ép nút dưới cùng về giữa màn hình trên điện thoại */
+            .bottom-action {
+                justify-content: center; 
+                margin: 20px auto 40px auto;
             }
         }
     </style>
@@ -523,6 +562,14 @@
             <span>Page 1 of 1</span>
         </footer>
     </div>
-
+<!-- Nút Back ở dưới chân trang -->
+        <div class="bottom-action">
+            <a href="https://haritrinh0104.my.canva.site/" class="bottom-back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.5H12.5A1.5 1.5 0 0 0 14 7V2a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                Back to Portfolio
+            </a>
+        </div>
 </body>
 </html>
