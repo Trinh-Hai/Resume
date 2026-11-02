@@ -307,17 +307,22 @@
                 padding: 20px;
                 box-shadow: none;
             }
-        .top-bar-container {
-            background-color: #1a3322;
-            border-radius: 10px; /* Bóp nhẹ bo góc lại cho hợp với thanh mỏng */
-            margin: 20px auto;
-            max-width: 1020px; /* KÉO DÀI RA: Rộng hơn tờ A4 (900px) mỗi bên 60px */
-            padding: 10px 24px; /* ÉP MỎNG LẠI: Giảm khoảng trống trên/dưới từ 16px xuống 10px */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+            .top-bar-container {
+                background-color: #1a3322;
+                border-radius: 10px; /* Bóp nhẹ bo góc lại cho hợp với thanh mỏng */
+                margin: 20px auto;
+                max-width: 1020px; /* KÉO DÀI RA: Rộng hơn tờ A4 (900px) mỗi bên 60px */
+                padding: 10px 24px; /* ÉP MỎNG LẠI: Giảm khoảng trống trên/dưới từ 16px xuống 10px */
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .download-btn svg, .back-btn svg {
+                flex-shrink: 0; /* Khóa cứng kích thước, tuyệt đối không cho bóp méo */
+                width: 16px;    /* Ép kích thước chuẩn */
+                height: 16px;   /* Ép kích thước chuẩn */
+            }
         }
     </style>
 </head>
