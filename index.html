@@ -210,7 +210,12 @@
             font-weight: bold;
             font-size: 14px;
         }
-
+        .job-header span:last-child {
+            color: var(--primary-blue);
+            white-space: nowrap; /* Lệnh "thiết quân luật": Cấm tuyệt đối rớt dòng */
+            flex-shrink: 0;      /* Cấm bị bóp nghẹt khi màn hình nhỏ */
+            margin-left: 15px;   /* Tạo khoảng hở an toàn để không dính sát vào tên Job */
+        }
         .job-company {
             font-size: 13px;
             font-weight: bold;
